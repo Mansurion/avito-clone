@@ -40,3 +40,4 @@ export const ROUTES = {
 };
 
 export const MAIN_PAGE_HEADING = 'Каталог объявлений';
+export const BASE_NAME = '/avito-clone';
