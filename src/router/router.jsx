@@ -1,21 +1,16 @@
 import { createBrowserRouter } from 'react-router-dom';
+import { ROUTES } from '../constants/constants.js';
 import { Layout } from '../components/layout/layout.jsx';
-import { MainPage } from '../pages/mainPage/mainPage.jsx';
-import { CreateProductPage } from '../pages/createProductPage/createProductPage.jsx';
+import { mainPageRoutes } from '../pages/mainPage/routes.jsx';
+import { createProductRoutes } from '../pages/createProductPage/routes.jsx';
 
 export const router = createBrowserRouter([
     {
-        path: '/',
+        path: ROUTES.HOME,
         element: <Layout />,
         children: [
-            {
-                path: '/',
-                element: <MainPage />
-            },
-            {
-                path: '/create',
-                element: <CreateProductPage />
-            }
+            ...mainPageRoutes,
+            ...createProductRoutes
         ]
     }
 ]);

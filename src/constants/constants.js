@@ -33,3 +33,10 @@ export const PRODUCTS_MOCK = [
         image: heroImage
     }
 ];
+
+export const ROUTES = {
+    HOME: '/',
+    CREATE: '/create',
+};
+
+export const MAIN_PAGE_HEADING = 'Каталог объявлений';
