@@ -1,13 +1,6 @@
-import { Header } from './components/Header/Header.jsx';
-import { MainPage } from './pages/MainPage/MainPage.jsx';
-import { Footer } from './components/Footer/Footer.jsx';
+import { RouterProvider } from 'react-router-dom';
+import { router } from './router/router.jsx';
 
 export const App = () => {
-  return (
-    <div>
-      <Header />
-      <MainPage />
-      <Footer />
-    </div>
-  );
+  return <RouterProvider router={router} />;
 };
