@@ -907,25 +907,9 @@ body {
 <file path="src/main.jsx">
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { App } from './App.jsx';
-import { catalogRoutes } from './features/catalog/routes.jsx';
-import { createAdRoutes } from './features/create-ad/routes.jsx';
-import { BASE_NAME } from './constants/constants.js';
+import { RouterProvider } from 'react-router-dom';
+import { router } from './router/router.jsx';
 import './styles/global.css';
-
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <App />,
-    children: [
-      ...catalogRoutes,
-      ...createAdRoutes,
-    ],
-  },
-], {
-  basename: BASE_NAME,
-});
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -978,8 +962,6 @@ export const eslintConfig = [
     },
   },
 ];
-
-export default eslintConfig;
 </file>
 
 <file path="src/components/header/header.jsx">
@@ -1024,24 +1006,6 @@ export const Layout = () => {
         </div>
     );
 };
-</file>
-
-<file path="src/router/router.jsx">
-import { createBrowserRouter } from 'react-router-dom';
-import { App } from '../App.jsx';
-import { catalogRoutes } from '../features/catalog/routes.jsx';
-import { createAdRoutes } from '../features/create-ad/routes.jsx';
-
-export const router = createBrowserRouter([
-    {
-        path: '/',
-        element: <App />,
-        children: [
-            ...catalogRoutes,
-            ...createAdRoutes,
-        ],
-    },
-]);
 </file>
 
 <file path="src/App.jsx">
@@ -1090,6 +1054,25 @@ jobs:
         with:
           folder: dist
           branch: gh-pages
+</file>
+
+<file path="src/router/router.jsx">
+import { createBrowserRouter } from 'react-router-dom';
+import { App } from '../App.jsx';
+import { catalogRoutes } from '../features/catalog/routes.jsx';
+import { createAdRoutes } from '../features/create-ad/routes.jsx';
+import { BASE_NAME } from '../constants/constants.js';
+
+export const router = createBrowserRouter(
+    [
+        {
+            path: '/',
+            element: <App />,
+            children: [...catalogRoutes, ...createAdRoutes],
+        },
+    ],
+    { basename: BASE_NAME }
+);
 </file>
 
 <file path="src/constants/constants.js">
