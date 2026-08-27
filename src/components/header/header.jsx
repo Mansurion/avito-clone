@@ -4,7 +4,7 @@ import {
     ROUTES,
     ADD_PRODUCT_BUTTON_TEXT
 } from '../../constants/constants.js';
-import styles from './Header.module.css';
+import styles from './header.module.css';
 
 export const Header = () => {
     return (
