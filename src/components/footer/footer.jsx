@@ -9,6 +9,18 @@ export const Footer = () => {
         <footer className={clsx(styles.footer)}>
             <div className={clsx(styles.container)}>
                 <span className={clsx(styles.text)}>{footerText}</span>
+                <span className={clsx(styles.separator)}>|</span>
+                <span className={clsx(styles.author)}>
+                    Made by{' '}
+                    <a
+                        href="https://github.com/Mansurion"
+                        className={clsx(styles.link)}
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        Mansurion
+                    </a>
+                </span>
             </div>
         </footer>
     );

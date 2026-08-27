@@ -11,9 +11,35 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
 }
 
 .text {
     font-size: 14px;
     color: #888888;
+}
+
+.separator {
+    color: #ccc;
+    user-select: none;
+}
+
+.author {
+    font-size: 14px;
+    color: #888888;
+}
+
+.link {
+    color: #ff6163;
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.2s ease;
+}
+
+@media (hover: hover) {
+    .link:hover {
+        opacity: 0.8;
+        text-decoration: underline;
+    }
 }

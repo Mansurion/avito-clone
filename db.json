@@ -1,0 +1,44 @@
+{
+  "sections": [
+    {
+      "id": "1",
+      "title": "Студия робототехники \"Лего\"",
+      "price": 4500,
+      "images": [
+        "https://unsplash.com",
+        "https://unsplash.com"
+      ],
+      "ageGroup": "7-10 лет",
+      "format": "Офлайн"
+    },
+    {
+      "id": "2",
+      "title": "Футбольная академия \"Юниор\"",
+      "price": 3500,
+      "images": [
+        "https://unsplash.com"
+      ],
+      "ageGroup": "3-6 лет",
+      "format": "Офлайн"
+    },
+    {
+      "id": "3",
+      "title": "Английский язык для подростков",
+      "price": 6000,
+      "images": [
+        "https://unsplash.com"
+      ],
+      "ageGroup": "11-15 лет",
+      "format": "Онлайн"
+    },
+    {
+      "title": "Греплинг",
+      "price": 5000,
+      "ageGroup": "11-15 лет",
+      "format": "Офлайн",
+      "images": [],
+      "id": "AVS2WFe4DQE"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

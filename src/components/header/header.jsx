@@ -1,20 +1,21 @@
 import { Link } from 'react-router-dom';
-import { clsx } from 'clsx';
-import { ROUTES, PROJECT_NAME } from '../../constants/constants.js';
-import styles from './header.module.css';
+import {
+    PROJECT_NAME,
+    ROUTES,
+    ADD_PRODUCT_BUTTON_TEXT
+} from '../../constants/constants.js';
+import styles from './Header.module.css';
 
-export const Header = ({ extraContent }) => {
+export const Header = () => {
     return (
-        <header className={clsx(styles.header)}>
-            <div className={clsx(styles.container)}>
-                <Link
-                    to={ROUTES.HOME}
-                    className={clsx(styles.logo)}
-                >
+        <header className={styles.header}>
+            <div className={styles.container}>
+                <Link to={ROUTES.HOME} className={styles.logo}>
                     {PROJECT_NAME}
                 </Link>
-
-                {extraContent}
+                <Link to={ROUTES.CREATE} className={styles.addButton}>
+                    {ADD_PRODUCT_BUTTON_TEXT}
+                </Link>
             </div>
         </header>
     );

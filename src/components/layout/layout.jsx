@@ -1,21 +1,15 @@
-import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import { clsx } from 'clsx';
-import { Header } from '../header/header.jsx';
-import { Footer } from '../footer/footer.jsx';
-import styles from './layout.module.css';
+import { Header } from '../Header/Header.jsx';
+import { Footer } from '../Footer/Footer.jsx';
+import styles from './Layout.module.css';
 
 export const Layout = () => {
-    const [headerContent, setHeaderContent] = useState(null);
-
     return (
-        <div className={clsx(styles.wrapper)}>
-            <Header extraContent={headerContent} />
-
-            <main className={clsx(styles.content)}>
-                <Outlet context={{ setHeaderContent }} />
+        <div className={styles.wrapper}>
+            <Header />
+            <main className={styles.content}>
+                <Outlet />
             </main>
-
             <Footer />
         </div>
     );

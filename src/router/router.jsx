@@ -1,21 +1,15 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { ROUTES, BASE_NAME } from '../constants/constants.js';
-import { Layout } from '../components/layout/layout.jsx';
-import { mainPageRoutes } from '../pages/mainPage/routes.jsx';
-import { createProductRoutes } from '../pages/createProductPage/routes.jsx';
+import { App } from '../App.jsx';
+import { catalogRoutes } from '../features/catalog/routes.jsx';
+import { createAdRoutes } from '../features/create-ad/routes.jsx';
 
-export const router = createBrowserRouter(
-    [
-        {
-            path: ROUTES.HOME,
-            element: <Layout />,
-            children: [
-                ...mainPageRoutes,
-                ...createProductRoutes
-            ]
-        }
-    ],
+export const router = createBrowserRouter([
     {
-        basename: BASE_NAME
-    }
-);
+        path: '/',
+        element: <App />,
+        children: [
+            ...catalogRoutes,
+            ...createAdRoutes,
+        ],
+    },
+]);
