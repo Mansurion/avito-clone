@@ -8,7 +8,7 @@ export const ADD_PRODUCT_BUTTON_TEXT = 'Разместить объявлени�
 export const PRODUCT_TITLE_LABEL = 'Название кружка или секции';
 export const PRODUCT_TITLE_PLACEHOLDER = 'Например, Студия робототехники "Лего"';
 
-export const BASE_NAME = '/avito-clone';
+export const BASE_NAME = '/circles-and-sections';
 
 export const ROUTES = {
     HOME: '/',
