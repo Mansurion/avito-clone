@@ -41,5 +41,3 @@ export const eslintConfig = [
     },
   },
 ];
-
-export default eslintConfig;

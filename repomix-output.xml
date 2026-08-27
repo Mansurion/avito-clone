@@ -816,30 +816,6 @@ dist-ssr
 }
 </file>
 
-<file path="eslint.config.js">
-import js from '@eslint/js'
-import globals from 'globals'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
-import { defineConfig, globalIgnores } from 'eslint/config'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{js,jsx}'],
-    extends: [
-      js.configs.recommended,
-      reactHooks.configs.flat.recommended,
-      reactRefresh.configs.vite,
-    ],
-    languageOptions: {
-      globals: globals.browser,
-      parserOptions: { ecmaFeatures: { jsx: true } },
-    },
-  },
-])
-</file>
-
 <file path="index.html">
 <!doctype html>
 <html lang="en">
@@ -958,34 +934,52 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 );
 </file>
 
-<file path=".github/workflows/deploy.yml">
-name: Deploy to GitHub Pages
+<file path="eslint.config.js">
+import js from '@eslint/js';
+import globals from 'globals';
+import react from 'eslint-plugin-react';
+import reactHooks from 'eslint-plugin-react-hooks';
+import reactRefresh from 'eslint-plugin-react-refresh';
 
-on:
-  push:
-    branches:
-      - main
+export const eslintConfig = [
+  { ignores: ['dist', 'node_modules'] },
+  js.configs.recommended,
+  {
+    files: ['**/*.{js,jsx}'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+      },
+      parserOptions: {
+        ecmaFeatures: { jsx: true },
+      },
+    },
+    plugins: {
+      react,
+      'react-hooks': reactHooks,
+      'react-refresh': reactRefresh,
+    },
+    rules: {
+      ...react.configs.recommended.rules,
+      ...reactHooks.configs.recommended.rules,
+      'react/react-in-jsx-scope': 'off',
+      'react/prop-types': 'off', // Отключаем устаревшую валидацию prop-types
+      'react-refresh/only-export-components': [
+        'warn',
+        { allowConstantExport: true },
+      ],
+    },
 
-permissions:
-  contents: write
+    settings: {
+      react: { version: 'detect' },
+    },
+  },
+];
 
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: "npm"
-      - run: npm ci
-      - run: npm run lint
-      - run: npm run build
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: dist
-          branch: gh-pages
+export default eslintConfig;
 </file>
 
 <file path="src/components/header/header.jsx">
@@ -995,7 +989,7 @@ import {
     ROUTES,
     ADD_PRODUCT_BUTTON_TEXT
 } from '../../constants/constants.js';
-import styles from './Header.module.css';
+import styles from './header.module.css';
 
 export const Header = () => {
     return (
@@ -1068,6 +1062,36 @@ export default defineConfig({
 });
 </file>
 
+<file path=".github/workflows/deploy.yml">
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run build
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: dist
+          branch: gh-pages
+</file>
+
 <file path="src/constants/constants.js">
 export const PROJECT_NAME = 'Кружки и Секции';
 export const CURRENT_YEAR = String(new Date().getFullYear());
@@ -1127,18 +1151,22 @@ export const FORMATS = {
     "clsx": "^2.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^7.18.2"
+    "react-router-dom": "^6.23.2"
   },
   "devDependencies": {
+    "@eslint/js": "^9.21.0",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
-    "@vitejs/plugin-react": "^4.2.1",
-    "eslint": "^8.57.0",
-    "eslint-plugin-react": "^7.34.1",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.6",
-    "gh-pages": "^6.1.1",
-    "vite": "^8.2.2"
+    "@vitejs/plugin-react": "^4.3.5",
+    "eslint": "^9.21.0",
+    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^15.15.0",
+    "vite": "^5.4.14"
+  },
+  "overrides": {
+    "eslint": "$eslint"
   }
 }
 </file>
